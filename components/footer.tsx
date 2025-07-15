@@ -15,7 +15,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/therusticart_ind"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground transition-colors hover:text-primary"
@@ -93,11 +93,11 @@ export default function Footer() {
               </li>
               <li className="flex items-start">
                 <Mail className="mr-2 h-5 w-5 text-primary" />
-                <span className="text-muted-foreground">info@bastardhokraart.com</span>
+                <span className="text-muted-foreground">ashishenterprises808@gmail.com</span>
               </li>
               <li className="flex items-start">
                 <Phone className="mr-2 h-5 w-5 text-primary" />
-                <span className="text-muted-foreground">+91 98765 43210</span>
+                <span className="text-muted-foreground">+91 72259 70033</span>
               </li>
             </ul>
           </div>

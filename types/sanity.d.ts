@@ -23,7 +23,10 @@ export interface SanityProduct {
   description: string
   images: SanityImage[]
   category: string
-  weight: number
+  weight: {
+    min: number
+    max: number
+  }
   dimensions: string
   material: string
   featured: boolean

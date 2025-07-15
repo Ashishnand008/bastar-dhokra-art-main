@@ -80,7 +80,6 @@ export default function ProductsPage() {
                       id={category}
                       checked={categories.includes(category)}
                       onCheckedChange={() => handleCategoryChange(category)}
-                      defaultChecked
                     />
                     <Label htmlFor={category}>{category}</Label>
                   </div>

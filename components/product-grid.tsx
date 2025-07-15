@@ -23,7 +23,7 @@ export default function ProductGrid({
   categories = [],
 }: ProductGridProps) {
   const [products, setProducts] = useState<SimpleProduct[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   // Use refs to track previous prop values
@@ -35,61 +35,65 @@ export default function ProductGrid({
     categories,
   })
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true)
-        let fetchedProducts: SimpleProduct[] = []
-        
-        if (featured) {
-          fetchedProducts = await getFeaturedProducts(limit)
-        } else {
-          fetchedProducts = await getAllProducts()
-        }
-
-        // Apply client-side filtering and sorting
-        let filteredProducts = [...fetchedProducts]
-
-        // Filter by price range
-        filteredProducts = filteredProducts.filter(
-          (product) => product.price >= priceRange[0] && product.price <= priceRange[1],
-        )
-
-        // Filter by categories
-        if (categories.length > 0) {
-          filteredProducts = filteredProducts.filter((product) => categories.includes(product.category))
-        }
-
-        // Sort products
-        switch (sortBy) {
-          case "price-low":
-            filteredProducts.sort((a, b) => a.price - b.price)
-            break
-          case "price-high":
-            filteredProducts.sort((a, b) => b.price - a.price)
-            break
-          case "newest":
-            filteredProducts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            break
-          default:
-            // featured or any other value
-            filteredProducts.sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1))
-        }
-
-        // Apply limit
-        if (limit) {
-          filteredProducts = filteredProducts.slice(0, limit)
-        }
-
-        setProducts(filteredProducts)
-        setError(null)
-      } catch (err) {
-        console.error('Failed to fetch products:', err)
-        setError('Failed to load products. Please try again later.')
-      } finally {
-        setLoading(false)
+  const fetchProducts = async () => {
+    try {
+      setLoading(true)
+      let fetchedProducts: SimpleProduct[] = []
+      
+      if (featured) {
+        fetchedProducts = await getFeaturedProducts(limit)
+      } else {
+        fetchedProducts = await getAllProducts()
       }
+
+      // Apply client-side filtering and sorting
+      let filteredProducts = [...fetchedProducts]
+
+      // Filter by price range
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price >= priceRange[0] && product.price <= priceRange[1],
+      )
+
+      // Filter by categories
+      if (categories.length > 0) {
+        filteredProducts = filteredProducts.filter((product) => categories.includes(product.category))
+      }
+
+      // Sort products
+      switch (sortBy) {
+        case "price-low":
+          filteredProducts.sort((a, b) => a.price - b.price)
+          break
+        case "price-high":
+          filteredProducts.sort((a, b) => b.price - a.price)
+          break
+        case "newest":
+          filteredProducts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          break
+        default:
+          // featured or any other value
+          filteredProducts.sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1))
+      }
+
+      // Apply limit
+      if (limit) {
+        filteredProducts = filteredProducts.slice(0, limit)
+      }
+
+      setProducts(filteredProducts)
+      setError(null)
+    } catch (err) {
+      console.error('Failed to fetch products:', err)
+      setError('Failed to load products. Please try again later.')
+    } finally {
+      setLoading(false)
     }
+  }
+  useEffect(() => {
+    fetchProducts();
+  }, [])
+
+  useEffect(() => {
 
     // Check if props have actually changed to avoid unnecessary fetches
     const propsChanged =
@@ -172,7 +176,7 @@ export default function ProductGrid({
             <div className="p-4">
               <h3 className="mb-1 font-medium line-clamp-1">{product.name}</h3>
               <p className="mb-2 text-lg font-semibold text-primary">${product.price.toFixed(2)}</p>
-              <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{product.description}</p>
+              <p className="mb-4 line-clamp-1 text-sm text-muted-foreground">{product.description}</p>
               <Link href={`/products/${product.id}`}>
                 <Button variant="outline" className="w-full">
                   <Eye className="mr-2 h-4 w-4" /> View Details

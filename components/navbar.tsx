@@ -36,7 +36,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About Bastar Dhokra Art" },
+    { href: "/about", label: "About" },
     { href: "/products", label: "Products" },
     { href: "/contact", label: "Contact" },
   ]
@@ -119,7 +119,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-6 py-3 text-sm font-medium transition-colors hover:bg-muted ${
+                className={`px-6 py-3 text-sm text-right font-medium transition-colors hover:bg-muted ${
                   pathname === link.href || (pathname === "/" && link.href.includes("/#"))
                     ? "bg-muted text-primary"
                     : "text-muted-foreground"

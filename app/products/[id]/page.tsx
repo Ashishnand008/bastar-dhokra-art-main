@@ -112,9 +112,8 @@ export default function ProductPage() {
             {product.images.map((image, index) => (
               <button
                 key={index}
-                className={`h-16 w-16 overflow-hidden rounded-md border transition-all ${
-                  currentImageIndex === index ? "ring-2 ring-primary ring-offset-2" : "opacity-70 hover:opacity-100"
-                }`}
+                className={`h-16 w-16 overflow-hidden rounded-md border transition-all ${currentImageIndex === index ? "ring-2 ring-primary ring-offset-2" : "opacity-70 hover:opacity-100"
+                  }`}
                 onClick={() => setCurrentImageIndex(index)}
               >
                 <img
@@ -142,7 +141,7 @@ export default function ProductPage() {
               </div>
               <div>
                 <h3 className="text-sm font-medium text-muted-foreground">Weight</h3>
-                <p>{product.weight} kg</p>
+                <p>{product.weight.min} - {product.weight.max} kg</p>
               </div>
               <div>
                 <h3 className="text-sm font-medium text-muted-foreground">Dimensions</h3>
@@ -162,8 +161,12 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
+          <div className="w-full">
+            <h3 className="text-sm font-medium text-muted-foreground">Description</h3>
+            <p>{product.description}</p>
+          </div>
 
-          <Button className="w-full">Add to Cart</Button>
+          {/* <Button className="w-full">Add to Cart</Button> */}
 
           <div className="mt-8 rounded-lg border bg-muted p-4">
             <h3 className="mb-2 font-semibold">Handcrafted Excellence</h3>
