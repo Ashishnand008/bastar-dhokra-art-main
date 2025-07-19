@@ -9,10 +9,13 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useMobile } from "@/hooks/use-mobile"
+import CurrencySelector from "@/components/currency-selector"
+import { useCurrency } from "@/contexts/currency-context"
 
 export default function Navbar() {
   const pathname = usePathname()
   const isMobile = useMobile()
+  const { selectedCurrency, setSelectedCurrency } = useCurrency()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -95,13 +98,30 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Separator */}
+            <div className="h-6 w-px bg-border mx-2" />
+            
+            {/* Currency Selector */}
+            <div className="flex items-center group">
+              <CurrencySelector
+                value={selectedCurrency}
+                onValueChange={setSelectedCurrency}
+                variant="nav"
+                className="group-hover:text-primary"
+              />
+            </div>
+            
+            {/* Separator */}
+            <div className="h-6 w-px bg-border mx-2" />
+            
+            {/* Theme Toggle */}
+            <ThemeToggle />
           </nav>
         )}
 
         {/* Right Side Actions */}
         <div className="flex items-center space-x-2">
-          <ThemeToggle />
-
           {/* Mobile Menu Button */}
           {isMobile && (
             <Button variant="ghost" size="icon" aria-label="Toggle Menu" onClick={toggleMenu}>
@@ -129,6 +149,19 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Separator */}
+            <div className="mx-6 my-2 h-px bg-border" />
+            
+            {/* Currency Selector */}
+            <div className="px-6 py-3 flex items-center justify-end group">
+              <CurrencySelector
+                value={selectedCurrency}
+                onValueChange={setSelectedCurrency}
+                variant="nav"
+                className="group-hover:text-primary w-fit"
+              />
+            </div>
           </nav>
         </div>
       )}

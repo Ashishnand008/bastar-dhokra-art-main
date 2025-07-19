@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { getProductById } from "@/lib/products"
 import { urlFor } from "@/lib/sanity"
 import { SanityProduct } from "@/types/sanity"
+import PriceDisplay from "@/components/price-display"
 
 export default function ProductPage() {
   const params = useParams()
@@ -129,7 +130,13 @@ export default function ProductPage() {
         {/* Product Details */}
         <div>
           <h1 className="mb-2 text-3xl font-bold">{product.name}</h1>
-          <p className="mb-4 text-2xl font-semibold text-primary">${product.price.toFixed(2)}</p>
+          <div className="mb-4">
+            <PriceDisplay 
+              amount={product.price} 
+              showCurrencySelector={true} 
+              variant="large"
+            />
+          </div>
 
           <div className="mb-6 space-y-4">
             <p className="text-muted-foreground">{product.description}</p>

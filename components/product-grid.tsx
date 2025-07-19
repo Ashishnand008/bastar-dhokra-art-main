@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Eye } from "lucide-react"
 import { AnimatedSection } from "@/components/animated-section"
 import { getAllProducts, getFeaturedProducts, SimpleProduct } from "@/lib/products"
+import PriceDisplay from "@/components/price-display"
 
 interface ProductGridProps {
   featured?: boolean
@@ -175,7 +176,11 @@ export default function ProductGrid({
             </div>
             <div className="p-4">
               <h3 className="mb-1 font-medium line-clamp-1">{product.name}</h3>
-              <p className="mb-2 text-lg font-semibold text-primary">${product.price.toFixed(2)}</p>
+              <PriceDisplay 
+                amount={product.price} 
+                variant="compact"
+                className="mb-2"
+              />
               <p className="mb-4 line-clamp-1 text-sm text-muted-foreground">{product.description}</p>
               <Link href={`/products/${product.id}`}>
                 <Button variant="outline" className="w-full">
