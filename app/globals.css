@@ -9,6 +9,31 @@
   font-display: swap;
 }
 
+/* Rustic Art Logo Text Styles */
+.rustic-art-text {
+  font-family: 'Halfomania-Regular', 'Audiowide', serif !important;
+  font-weight: normal !important;
+  font-size: 3rem !important;
+  letter-spacing: 0.18em !important;
+  line-height: normal;
+}
+
+.glow-text {
+  /* Light mode: black glow, increased intensity */
+  text-shadow:
+    0 0 12px rgba(0,0,0,0.68),
+    0 0 24px rgba(0,0,0,0.58),
+    0 0 48px rgba(0,0,0,0.48);
+}
+
+html.dark .glow-text {
+  /* Dark mode: white glow, increased intensity */
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.58),
+    0 0 24px rgba(255,255,255,0.48),
+    0 0 48px rgba(255,255,255,0.38);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

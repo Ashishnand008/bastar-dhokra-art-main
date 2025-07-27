@@ -70,51 +70,16 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled ? "bg-background/80 shadow backdrop-blur-md" : "bg-background"
-      }`}
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-background/80 shadow backdrop-blur-md" : "bg-background"
+        }`}
     >
       <div className="container mx-auto flex h-28 items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <img src="/rustic_art_logo.png" alt="Bastar Dhokra Art" className="h-20 w-auto" />
-          {/* 
-            Uses "Halfomania" font (ensure it's loaded in your project, e.g. via @font-face in your CSS).
-            Example @font-face (add to your global CSS):
-            @font-face {
-              font-family: 'Halfomania';
-              src: url('/fonts/Halfomania.ttf') format('truetype');
-              font-weight: normal;
-              font-style: normal;
-            }
-          */}
-          <p
-            className="text-2xl dark:text-white md:text-4xl font-extrabold tracking-widest uppercase select-none glow-text"
-            style={{
-              fontFamily: "'Halfomania-Regular', 'Audiowide', serif",
-              fontWeight: "normal",
-              fontSize: "3rem",
-              letterSpacing: "0.18em",
-            }}
-          >
+          <p className="rustic-art-text dark:text-white uppercase select-none glow-text">
             THE RUSTIC ART
           </p>
-          <style jsx global>{`
-            .glow-text {
-              /* Light mode: black glow, increased intensity */
-              text-shadow:
-                0 0 12px rgba(0,0,0,0.68),
-                0 0 24px rgba(0,0,0,0.58),
-                0 0 48px rgba(0,0,0,0.48);
-            }
-            html.dark .glow-text {
-              /* Dark mode: white glow, increased intensity */
-              text-shadow:
-                0 0 12px rgba(255,255,255,0.58),
-                0 0 24px rgba(255,255,255,0.48),
-                0 0 48px rgba(255,255,255,0.38);
-            }
-          `}</style>
         </Link>
 
         {/* Desktop Navigation */}
@@ -124,20 +89,19 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-base font-medium transition-colors hover:text-primary ${
-                  pathname === link.href || (pathname === "/" && link.href.includes("/#"))
+                className={`text-base font-medium transition-colors hover:text-primary ${pathname === link.href || (pathname === "/" && link.href.includes("/#"))
                     ? "text-primary"
                     : "text-muted-foreground"
-                }`}
+                  }`}
                 onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </Link>
             ))}
-            
+
             {/* Separator */}
             <div className="h-6 w-px bg-border mx-2" />
-            
+
             {/* Currency Selector */}
             <div className="flex items-center group">
               <CurrencySelector
@@ -147,10 +111,10 @@ export default function Navbar() {
                 className="group-hover:text-primary"
               />
             </div>
-            
+
             {/* Separator */}
             <div className="h-6 w-px bg-border mx-2" />
-            
+
             {/* Theme Toggle */}
             <ThemeToggle />
           </nav>
@@ -175,20 +139,19 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-6 py-3 text-sm text-right font-medium transition-colors hover:bg-muted ${
-                  pathname === link.href || (pathname === "/" && link.href.includes("/#"))
+                className={`px-6 py-3 text-sm text-right font-medium transition-colors hover:bg-muted ${pathname === link.href || (pathname === "/" && link.href.includes("/#"))
                     ? "bg-muted text-primary"
                     : "text-muted-foreground"
-                }`}
+                  }`}
                 onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </Link>
             ))}
-            
+
             {/* Separator */}
             <div className="mx-6 my-2 h-px bg-border" />
-            
+
             {/* Currency Selector */}
             <div className="px-6 py-3 flex items-center justify-end group">
               <CurrencySelector
@@ -197,6 +160,14 @@ export default function Navbar() {
                 variant="nav"
                 className="group-hover:text-primary w-fit"
               />
+            </div>
+            
+            {/* Separator */}
+            <div className="mx-6 my-2 h-px bg-border" />
+            
+            {/* Theme Toggle */}
+            <div className="px-6 py-3 flex items-center justify-end">
+              <ThemeToggle />
             </div>
           </nav>
         </div>
