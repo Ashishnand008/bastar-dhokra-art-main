@@ -12,7 +12,7 @@ export const metadata = {
   title: "Bastar Dhokra Art - Authentic Tribal Metal Craft",
   description:
     "Discover authentic Bastar Dhokra Art - handcrafted tribal metal sculptures using the ancient lost-wax casting technique from central India.",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
