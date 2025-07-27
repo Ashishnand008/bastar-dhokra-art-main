@@ -76,9 +76,45 @@ export default function Navbar() {
     >
       <div className="container mx-auto flex h-28 items-center justify-between px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <img src="/logo.svg" alt="Bastar Dhokra Art" className="h-24 w-auto" />
-          <p className="text-2xl audiowide-regular dark:text-yellow-800">BASTAR DHOKRA ART</p>
+        <Link href="/" className="flex items-center gap-2">
+          <img src="/rustic_art_logo.png" alt="Bastar Dhokra Art" className="h-20 w-auto" />
+          {/* 
+            Uses "Halfomania" font (ensure it's loaded in your project, e.g. via @font-face in your CSS).
+            Example @font-face (add to your global CSS):
+            @font-face {
+              font-family: 'Halfomania';
+              src: url('/fonts/Halfomania.ttf') format('truetype');
+              font-weight: normal;
+              font-style: normal;
+            }
+          */}
+          <p
+            className="text-2xl dark:text-white md:text-4xl font-extrabold tracking-widest uppercase select-none glow-text"
+            style={{
+              fontFamily: "'Halfomania-Regular', 'Audiowide', serif",
+              fontWeight: "normal",
+              fontSize: "3rem",
+              letterSpacing: "0.18em",
+            }}
+          >
+            THE RUSTIC ART
+          </p>
+          <style jsx global>{`
+            .glow-text {
+              /* Light mode: black glow, increased intensity */
+              text-shadow:
+                0 0 12px rgba(0,0,0,0.68),
+                0 0 24px rgba(0,0,0,0.58),
+                0 0 48px rgba(0,0,0,0.48);
+            }
+            html.dark .glow-text {
+              /* Dark mode: white glow, increased intensity */
+              text-shadow:
+                0 0 12px rgba(255,255,255,0.58),
+                0 0 24px rgba(255,255,255,0.48),
+                0 0 48px rgba(255,255,255,0.38);
+            }
+          `}</style>
         </Link>
 
         {/* Desktop Navigation */}

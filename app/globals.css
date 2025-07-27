@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Aladin&family=Audiowide&family=Bungee+Inline&family=Orbitron:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Halfomania Font - Fallback to Audiowide if not available */
+@font-face {
+  font-family: 'Halfomania-Regular';
+  src: url('/fonts/Halfomania-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

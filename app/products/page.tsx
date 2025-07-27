@@ -12,7 +12,7 @@ import { getCategories } from "@/lib/sanity"
 
 export default function ProductsPage() {
   const [sortBy, setSortBy] = useState("featured")
-  const [priceRange, setPriceRange] = useState([0, 100])
+  const [priceRange, setPriceRange] = useState([0, 300])
   const [categories, setCategories] = useState<string[]>([])
   const [categoryOptions, setCategoryOptions] = useState<string[]>([])
 
@@ -42,7 +42,7 @@ export default function ProductsPage() {
 
   const clearFilters = () => {
     setSortBy("featured")
-    setPriceRange([0, 100])
+    setPriceRange([0, 300])
     setCategories([])
   }
 
