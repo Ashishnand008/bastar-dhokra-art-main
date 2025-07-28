@@ -9,12 +9,15 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { AnimatedSection } from "@/components/animated-section"
 import { getCategories } from "@/lib/sanity"
+import MobileFilterModal from "@/components/mobile-filter-modal"
+import { MobileFilterButton } from "@/components/mobile-filter-button"
 
 export default function ProductsPage() {
   const [sortBy, setSortBy] = useState("featured")
   const [priceRange, setPriceRange] = useState([0, 300])
   const [categories, setCategories] = useState<string[]>([])
   const [categoryOptions, setCategoryOptions] = useState<string[]>([])
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -52,9 +55,14 @@ export default function ProductsPage() {
         <h1 className="mb-8 text-center text-3xl font-bold md:text-4xl">Explore Our Collection</h1>
       </AnimatedSection>
 
+      {/* Mobile Filter Button Container */}
+      <div className="mobile-filter-container md:hidden">
+        <MobileFilterButton onClick={() => setIsMobileFilterOpen(true)} />
+      </div>
+
       <div className="grid gap-8 md:grid-cols-[300px_1fr]">
-        {/* Filters Sidebar */}
-        <AnimatedSection animation="fade-in-left">
+        {/* Filters Sidebar - Desktop Only */}
+        <AnimatedSection animation="fade-in-left" className="hidden md:block">
           <div className="rounded-lg border bg-card p-6 shadow-sm">
             <div className="mb-6">
               <h2 className="mb-4 text-xl font-semibold">Sort By</h2>
@@ -114,6 +122,20 @@ export default function ProductsPage() {
           <ProductGrid sortBy={sortBy} priceRange={[priceRange[0] * 50, priceRange[1] * 50]} categories={categories} />
         </AnimatedSection>
       </div>
+
+      {/* Mobile Filter Modal */}
+      <MobileFilterModal
+        isOpen={isMobileFilterOpen}
+        onClose={() => setIsMobileFilterOpen(false)}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        priceRange={priceRange}
+        setPriceRange={setPriceRange}
+        categories={categories}
+        setCategories={setCategories}
+        categoryOptions={categoryOptions}
+        clearFilters={clearFilters}
+      />
     </main>
   )
 }

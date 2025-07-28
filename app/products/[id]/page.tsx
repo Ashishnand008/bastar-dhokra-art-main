@@ -168,10 +168,6 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
-          <div className="w-full">
-            <h3 className="text-sm font-medium text-muted-foreground">Description</h3>
-            <p>{product.description}</p>
-          </div>
 
           {/* <Button className="w-full">Add to Cart</Button> */}
 

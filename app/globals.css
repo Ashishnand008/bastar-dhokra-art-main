@@ -99,6 +99,32 @@ html {
   scroll-padding-top: 80px; /* Add padding to account for fixed header */
 }
 
+/* Mobile filter button sticky positioning */
+.mobile-filter-sticky {
+  position: sticky !important;
+  top: 7rem !important; /* 112px - accounts for navbar height */
+  z-index: 40 !important;
+  margin-bottom: 1rem;
+}
+
+/* Ensure the main container doesn't interfere with sticky positioning */
+.products-container {
+  position: relative;
+}
+
+/* Sticky wrapper for mobile filter button */
+.sticky-wrapper {
+  position: relative;
+  z-index: 30;
+}
+
+/* Mobile filter button container */
+.mobile-filter-container {
+  position: relative;
+  z-index: 30;
+  margin-bottom: 1rem;
+}
+
 /* Font */
 .audiowide-regular {
   font-family: "Audiowide", sans-serif;

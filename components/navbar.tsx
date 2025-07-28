@@ -18,9 +18,18 @@ export default function Navbar() {
   const { selectedCurrency, setSelectedCurrency } = useCurrency()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
+    if (!isMenuOpen) {
+      setIsMenuOpen(true)
+      // Trigger animation after menu opens
+      setTimeout(() => setIsMenuVisible(true), 10)
+    } else {
+      setIsMenuVisible(false)
+      // Close menu after animation
+      setTimeout(() => setIsMenuOpen(false), 300)
+    }
   }
 
   useEffect(() => {
@@ -34,7 +43,8 @@ export default function Navbar() {
 
   useEffect(() => {
     // Close mobile menu when route changes
-    setIsMenuOpen(false)
+    setIsMenuVisible(false)
+    setTimeout(() => setIsMenuOpen(false), 300)
   }, [pathname])
 
   const navLinks = [
@@ -133,8 +143,22 @@ export default function Navbar() {
 
       {/* Mobile Navigation - Right aligned with limited width */}
       {isMobile && isMenuOpen && (
-        <div className="absolute right-0 w-64 bg-background border-l border-b shadow-lg">
-          <nav className="flex flex-col py-4">
+        <>
+          {/* Backdrop */}
+          <div
+            className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${
+              isMenuVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+            onClick={toggleMenu}
+          />
+          
+          {/* Menu */}
+          <div
+            className={`absolute right-0 top-28 z-50 w-64 transform bg-background/95 backdrop-blur-sm border-l border-b shadow-lg transition-transform duration-300 ease-in-out ${
+              isMenuVisible ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          >
+            <nav className="flex flex-col py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -171,6 +195,7 @@ export default function Navbar() {
             </div>
           </nav>
         </div>
+        </>
       )}
     </header>
   )
